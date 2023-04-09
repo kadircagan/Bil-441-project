@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class test {
     public static void main(String[] args) {
         System.out.println("kupa-4".indexOf("kupa"));
@@ -8,6 +10,12 @@ public class test {
         if(car =="-" ){
             System.out.println("heyy google");
         }
+
+        ArrayList<String> deniz = new ArrayList<>();
+        deniz.add("car");
+        deniz.add("casr");
+        deniz.add(1,"casdasdassar");
+        System.out.println(deniz);
 
     }
 }

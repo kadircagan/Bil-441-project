@@ -1,9 +1,11 @@
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class App {
 
     static String[] deck = new String[52];
+    public static ArrayList<String> deckList;
     static playerObj mainPlayer;
     static playerObj player1;
     static playerObj player2;
@@ -14,9 +16,17 @@ public class App {
         setGame();
         startGame();
     }
-
+    public static ArrayList<String> arraytoList(){
+        ArrayList<String> newList = new ArrayList<>();
+        for (String string : deck) {
+            if(string!=null)
+            newList.add(string);
+        }
+        return newList;
+    }
     public static void setGame(){
         createDeck();
+        deckList = arraytoList();
         shuffleDeck();
         mainPlayer = new playerObj(deck);
         player1 = new playerObj(deck);
@@ -70,6 +80,7 @@ public class App {
             }
             System.out.println(mpMove + " "+ player1Move + " "+player2Move + " "+player3Move + " " );
             deleteFromAllMemory(mpMove,player1Move,player2Move,player3Move);
+            deckList = arraytoList();
             turn = whoWins(mainCard,mpMove,player1Move,player2Move,player3Move,turn);
             System.out.println(turn);
 

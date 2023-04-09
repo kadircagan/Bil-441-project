@@ -22,6 +22,14 @@ public class playerObj {
     public ArrayList<String> getCards() {
         return cards;
     }
+    public static void deleteFromMem(String Move) {
+        for(int i=0; i<52;i++){
+            if(App.deck[i]!=null && App.deck[i].equals(Move)){
+                App.deck[i]=null;
+            }
+        }
+        App.deckList = App.arraytoList();
+    }//test
 
     public String play(String cardtoPlay,ArrayList<String> turnCards){
         Scanner sc= new Scanner(System.in);
@@ -48,6 +56,7 @@ public class playerObj {
                 continue;
             }
         }
+    deleteFromMem(returnStr);
     turnCards.add(returnStr);
     return returnStr;
     }
@@ -81,6 +90,7 @@ public class playerObj {
         
         String choosenCard = cards.get(playingCard);
         turnCards.add(choosenCard);
+        deleteFromMem(choosenCard);
         System.out.println(choosenCard);
         cards.remove(playingCard);
         Collections.sort(cards);
@@ -167,23 +177,33 @@ public class playerObj {
 
         if(!isNewDeck){//eger ilk atıyosam 
             System.out.println("R1");
-            cardPlaceThatPlayed = thinktoPlayAi(cards);
+            cardPlaceThatPlayed = thinktoPlayAi(cards,0,turnCardsComed);
             playedOne = cards.get(cardPlaceThatPlayed);
             return playedOne;
         }
         //benden öncekilerden düşük atamadıysam  kupa10 kupa 2 varken r2ye girmesinin sebebi hangisini atıcagından emin deil
             System.out.println("R2");
-            cardPlaceThatPlayed = thinktoPlayAi(deck);
+            cardPlaceThatPlayed = thinktoPlayAi(deck,1,turnCardsComed);
             playedOne = deck.get(cardPlaceThatPlayed);
         
         return playedOne;
     }
 
-    int thinktoPlayAi(ArrayList<String> takenDeck){
-        
-        Random rand = new Random(); 
-        int firstRandom = rand.nextInt(takenDeck.size()); 
-        return firstRandom;
+    int thinktoPlayAi(ArrayList<String> takenDeck, int state,ArrayList<String> turnCardsComed){
+        if(state ==0){
+        KartOyunuYapayZeka decicionObject = new KartOyunuYapayZeka(takenDeck,App.deckList ,4,turnCardsComed);
+        int pref = decicionObject.go();
+        return pref;
+    }if(state==1){
+        KartOyunuYapayZeka decicionObject = new KartOyunuYapayZeka(takenDeck,App.deckList ,4,turnCardsComed);
+        int pref = decicionObject.go();
+        return pref;
+
+     //   Random rand = new Random(); 
+     //   int firstRandom = rand.nextInt(takenDeck.size()); 
+     //   return firstRandom;
+    }
+        return -1;
     }
 
 
