@@ -1,6 +1,8 @@
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class App {
 
@@ -38,6 +40,16 @@ public class App {
     public static void startGame(){
         gameLoop();
     }
+    static void printmains(String maincard){
+        Collections.sort(deckList);
+        for (String string : deckList) {
+            
+            if(string.indexOf(maincard.substring(0,3))!=-1){
+                System.out.print(string+" ");
+            }            
+        }
+        System.out.println();
+    }
 
 
     public static void gameLoop() {
@@ -56,24 +68,28 @@ public class App {
             if(turn==0){//önceki eli player0 kazandi
             mpMove = mainPlayer.play("",turnCards);
             mainCard=mpMove;
+            printmains(mainCard);
             player1Move = player1.play(turnCards);
             player2Move = player2.play(turnCards);
             player3Move = player3.play(turnCards);
             }else if(turn==1){//önceki eli player 1 kazandi
             player1Move = player1.play(turnCards);
             mainCard=player1Move;
+            printmains(mainCard);
             player2Move = player2.play(turnCards);
             player3Move = player3.play(turnCards);
             mpMove = mainPlayer.play("",turnCards);
             }else if(turn==2){//önceki eli player 2 kazandi
             player2Move = player2.play(turnCards);
             mainCard=player2Move;
+            printmains(mainCard);
             player3Move = player3.play(turnCards);
             mpMove = mainPlayer.play("",turnCards);
             player1Move = player1.play(turnCards);
             }else if(turn==3){//önceki eli player 3 kazandi
             player3Move = player3.play(turnCards);
             mainCard=player3Move;
+            printmains(mainCard);
             mpMove = mainPlayer.play("",turnCards);
             player1Move = player1.play(turnCards);
             player2Move = player2.play(turnCards);

@@ -29,7 +29,7 @@ public class playerObj {
             }
         }
         App.deckList = App.arraytoList();
-    }//test
+    }
 
     public String play(String cardtoPlay,ArrayList<String> turnCards){
         Scanner sc= new Scanner(System.in);
@@ -63,6 +63,8 @@ public class playerObj {
 
     
     public String play(ArrayList<String> turnCards){
+        if(cards.size()==1)
+            return cards.get(0);
         int playingCard = 0;
         String stringNameOfCardPlayed;
         ArrayList<String> newdeck = new ArrayList<String>();
