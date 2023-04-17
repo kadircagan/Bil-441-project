@@ -27,7 +27,7 @@ public class KartOyunuYapayZeka {
                 
                 end = minimaxOtherCard(0, turnsCardComed, cards,2,turnsCardComed.get(0));
              }
-             System.out.println();
+             //System.out.println();
 
             return end;
         }
@@ -95,7 +95,7 @@ public class KartOyunuYapayZeka {
                 currentCardScore=currentCardScore+awardCalculated;
                 awardValue=0;
 
-                System.out.print(currentCardScore+" ");
+              //  System.out.print(currentCardScore+" ");
                 if(currentCardScore > maximumValue){
                     maximumValue =currentCardScore;
                     maximumCard = i;
@@ -148,7 +148,7 @@ public class KartOyunuYapayZeka {
                 currentCardScore=currentCardScore+awardCalculated;
                 awardValue=0;
                 awardValue=0;
-                System.out.print(currentCardScore+" ");
+              //  System.out.print(currentCardScore+" ");
                 if(currentCardScore > maximumValue){
                     maximumValue =currentCardScore;
                     maximumCard = i;

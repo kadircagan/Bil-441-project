@@ -8,10 +8,10 @@ import java.util.concurrent.TimeUnit;
 public class playerObj {
     private ArrayList<String> cards = new ArrayList<String>();
     String[] deck ;
-
-    public  playerObj(String[] deckNew){
+    String nameofPLayer= "";
+    public  playerObj(String[] deckNew, String name){
         deck =deckNew;
-
+        nameofPLayer = name;
     }
 
     void addCardToDeck(String card){
@@ -79,7 +79,7 @@ public class playerObj {
                 }
                 
             }
-            System.out.println(newdeck);
+            //System.out.println(newdeck);
             stringNameOfCardPlayed = thinktoPlay(newdeck,true,turnCards);
         }
         int i =0;
@@ -93,7 +93,7 @@ public class playerObj {
         String choosenCard = cards.get(playingCard);
         turnCards.add(choosenCard);
         deleteFromMem(choosenCard);
-        System.out.println(choosenCard);
+        System.out.println( nameofPLayer+ " || " + choosenCard + " || attı.");
         cards.remove(playingCard);
         Collections.sort(cards);
 
@@ -154,7 +154,7 @@ public class playerObj {
                     break;
                 }
 
-                for (int i=highestCard;i>0;i--) {
+                for (int i=highestCard;i>=0;i--) {
                     for (String card : deck) {
                         if(card.indexOf(vals[i])!=-1){
                             return card;
@@ -163,7 +163,7 @@ public class playerObj {
                 }
 
                 if(turnCardsComed.size()==3)
-                for (int i=vals.length-1;i>0;i--) {
+                for (int i=vals.length-1;i>=0;i--) {
                     for (String card : deck) {
                         if(card.indexOf(vals[i])!=-1){
                             return card;
@@ -178,13 +178,13 @@ public class playerObj {
                                                                      //atmalısın ve eğerki son oyuncuysan ve 
 
         if(!isNewDeck){//eger ilk atıyosam 
-            System.out.println("R1");
+          //  System.out.println("R1");
             cardPlaceThatPlayed = thinktoPlayAi(cards,0,turnCardsComed);
             playedOne = cards.get(cardPlaceThatPlayed);
             return playedOne;
         }
         //benden öncekilerden düşük atamadıysam  kupa10 kupa 2 varken r2ye girmesinin sebebi hangisini atıcagından emin deil
-            System.out.println("R2");
+           // System.out.println("R2");
             cardPlaceThatPlayed = thinktoPlayAi(deck,1,turnCardsComed);
             playedOne = deck.get(cardPlaceThatPlayed);
         
